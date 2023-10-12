@@ -126,10 +126,11 @@ function BookGridView(props) {
             stars: 2,
         },
     ])
+    console.log(products)
     return <View style={{
         flex: 1,
         backgroundColor: 'white',
-    }}>`    `
+    }}>
         <FlatList
             data={products}
             numColumns={2}

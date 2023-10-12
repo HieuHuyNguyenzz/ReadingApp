@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import { images, colors, icons, fontSize } from '../constants'
 import { isValidEmail, isValidPassword } from '../utilies/Validation'
+import UITabs from "../navigation/UITabs";
 
 function Login(props) {
     const [keyboardIsShown, setKeyboardIsShown] = useState(false)
@@ -28,7 +29,8 @@ function Login(props) {
         })
     })
 
-    const { navigation } = props;
+    const {navigation, route} = props
+    const {navigate, goBack} = navigation
 
     return <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -149,6 +151,7 @@ function Login(props) {
                     onPress={() => {
                         alert(`Email = ${email},
                             password = ${password}`)
+                        
                     }}
                     style={{
                         backgroundColor: isValidationOK() == true ? colors.primary : colors.inactive,
@@ -164,7 +167,7 @@ function Login(props) {
                         fontSize: fontSize.h5,
                         color: 'white',
                     }}
-                        onPress={() => navigation.navigate('BookList')}
+                        onPress={() => navigation.navigate('UITabs')}
                     >Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -173,10 +176,20 @@ function Login(props) {
                     }}
                     style={{ padding: 5 }}>
                     <Text style={{
-                        padding: 8,
+                        marginTop: 5,
                         fontSize: 12,
                         alignSelf: 'center'
                     }} >New user ? Register now</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.navigate('Password')
+                    }}
+                    style={{ padding: 5 }}>
+                    <Text style={{
+                        fontSize: 12,
+                        alignSelf: 'center',
+                    }} >Forgot password</Text>
                 </TouchableOpacity>
             </View> : <View
                 style={{

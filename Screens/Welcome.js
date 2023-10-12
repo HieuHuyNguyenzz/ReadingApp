@@ -5,7 +5,6 @@ import { images, icons, colors } from '../constants/index'
 import { UIbuttons } from "../components";
 
 function Welcome(props) {
-    const {navigation} = props
     const [accountTypes, setAccountTypes] = useState([
         {
             name: '1-15',
@@ -20,6 +19,8 @@ function Welcome(props) {
             isSelected: false
         },
     ])
+    const {navigation, route} = props
+    const {navigate, goBack} = navigation
     return <View style={{
         flex: 100
     }}>
@@ -50,7 +51,6 @@ function Welcome(props) {
                             marginStart: 10,
                             marginEnd: 5
                         }} />
-
                     <Text style={{
                         color: '#FAEBD7'
                     }}>BOOK.CO</Text>
@@ -91,7 +91,7 @@ function Welcome(props) {
                 flex: 40,
             }}>
                 {accountTypes.map(accountType =>
-                    <UIbuttons onPress={() => {
+                    <UIbuttons key={accountType.name} onPress={() => {
                         let newAccountTypes = accountTypes.map(eachAccountType => {
                             return { ...eachAccountType, isSelected: eachAccountType.name == accountType.name }
                         })
@@ -111,9 +111,7 @@ function Welcome(props) {
                     alignSelf: 'center'
                 }}>Want to register new Account ?</Text>
                 <TouchableOpacity
-                    onPress={() => {
-                        alert('ahihi')
-                    }}
+                    onPress={() => navigation.navigate('Register')}
                     style = {{
                     padding: 5,
                 }} >

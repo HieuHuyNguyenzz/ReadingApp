@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-    Text,
-    View,
     Image,
-    ImageBackground,
+    Text,
     TouchableOpacity,
-    TextInput,
-    KeyboardAvoidingView,
-    Keyboard,
-    ScrollView,
-    FlatList,
-    Alert,
-} from 'react-native'
-import { images, colors, icons, fontSize } from '../../constants'
+    View
+} from 'react-native';
+import { colors, fontSize, icons } from '../../constants';
 import FiveStars from "./FiveStars";
 function GridItem(props){
     const {item, index, onPress} = props
+
     return <View style={{
         color: 'black',
         flex: 0.5,
@@ -66,44 +60,52 @@ function GridItem(props){
                     }}>* {specifications}</Text>)
         }
         <View style={{
-            flexDirection: 'row',
+            flexDirection: 'column',
             padding: 10,
-            marginTop: 5,
+            marginTop: "auto",
             marginLeft: 10,
             marginBottom: 10,
             marginRight: 10,
+            position: "relative",
+            gap: 6
         }}>
-            <TouchableOpacity
-                
-                style={{
-                    flexDirection: 'row'
-                }}>
-                <Image source={icons.heart}
+            <View>
+                <TouchableOpacity
+                    onPress = {onPress}
                     style={{
-                        height: 20,
-                        width: 20,
-                        marginEnd: 5,
-                    }}
-                    
-                />
-                <Text style={{
-                    //color: '#2395ff',
-                    color: '#FF7E92',
-                    fontWeight: 'bold',
-                    opacity: 1,
-                    width: 50,
-                }}>Saved for later</Text>
-            </TouchableOpacity>
+                        flexDirection: 'row',
+                        display: "flex"
+                    }}>
+                    <Image source={icons.heart}
+                        style={{
+                            height: 20,
+                            width: 20,
+                            marginEnd: 5,
+                        }}
+                        
+                    />
+                    <Text style={{
+                        //color: '#2395ff',
+                        color: item.isSaved ? 'black' : '#FF7E92',
+                        fontWeight: 'bold',
+                        opacity: item.isSaved ? 0.5 : 1,
+                        flex: 1
+                    }}>Saved for later</Text>
+                </TouchableOpacity>
+            </View>
             <View style={{
                 //backgroundColor: '',
                 flex: 1,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between"
             }}>
                 <FiveStars numberOfStars={item.stars}></FiveStars>
                 <Text style={{
                     color: "blue",
                     fontSize: 10,
                     textAlign: 'right',
-                    paddingTop: 5,
                 }}>{item.reviews} reviews</Text>
             </View>
 
