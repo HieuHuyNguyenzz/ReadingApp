@@ -22,7 +22,7 @@ function BookList(props) {
     const [books, setBooks] = useState([
         {
             name: 'I Am Tuiba',
-            type: 'Adventure, Fantasy',
+            type: 'Adventure',
             url: 'https://eccthai.com/wp-content/uploads/2022/05/toi-la-ibrahimovic.jpg',
             status: 'Opening soon',
             price: 499.99,
@@ -70,7 +70,7 @@ function BookList(props) {
         },
         {
             name: 'All the Light We Cannot See',
-            type: 'Historical Fiction',
+            type: 'Historical',
             url: 'https://th.bing.com/th/id/R.aff5cb8b720e75ce3fc7470df641c51b?rik=E5K8Ywe7N1L3Cw&riu=http%3a%2f%2fcovers.booktopia.com.au%2fbig%2f9780007548699%2fall-the-light-we-cannot-see.jpg&ehk=g%2fi5HrUOMXw%2bzXgEzSyZKjaZsU%2bDHWT%2brBe3lxFrC2c%3d&risl=&pid=ImgRaw&r=0',
             status: 'Closing Soon',
             price: 499.99,
@@ -118,7 +118,7 @@ function BookList(props) {
         },
         {
             name: 'The Girl with the Dragon Tattoo',
-            type: 'Mystery Thriller',
+            type: 'Mystery',
             url: 'https://th.bing.com/th/id/R.e479e3aa185a06d9e183bd67321fa3d7?rik=UbE%2bCXx7X7JWAw&riu=http%3a%2f%2fpics.filmaffinity.com%2fThe_Girl_with_the_Dragon_Tattoo-445739302-large.jpg&ehk=elRQTN5uE5QebuPi9yWXdkMBASpxjptA9QG3d97wiT4%3d&risl=&pid=ImgRaw&r=0',
             status: 'Opening Now',
             price: 499.99,
@@ -134,7 +134,7 @@ function BookList(props) {
         },
         {
             name: 'Gone Girl',
-            type: 'Mystery Thriller',
+            type: 'Mystery',
             url: 'https://th.bing.com/th/id/R.6c30ca68df18aa8b9ed0b3f77e12b5ab?rik=qOgQ7ZCa5O8F2A&riu=http%3a%2f%2fwww.newdvdreleasedates.com%2fimages%2fposters%2flarge%2fgone-girl-2014-06.jpg&ehk=Q9LfeNdJ5Kt4hBY6K5xBGo9Ark3x297JSNwyYJ1n6W8%3d&risl=&pid=ImgRaw&r=0',
             status: 'Opening Now',
             price: 499.99,
@@ -150,7 +150,7 @@ function BookList(props) {
         },
         {
             name: 'Crime and Punishment',
-            type: 'Psychological Thriller',
+            type: 'Psychological',
             url: 'https://i.thenile.io/r1000/9780486415871.jpg?r=5e4284a48e904',
             status: 'Coming soon',
             price: 499.99,
@@ -200,6 +200,10 @@ function BookList(props) {
             url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuTawOxjwktIAxO5KZvZt7sEsoTM-fAOI56AyRfVYc6frp6bK_qL5i2gMfYmQEqWR6EK0&usqp=CAU",
         },
         {
+            name: 'Memoir',
+            url: "https://vcdn1-thethao.vnecdn.net/2021/09/16/jpg-jpeg-3554-1631772277.jpg?w=0&h=0&q=100&dpr=1&fit=crop&s=-BaI_BMJ7WE9KRFkKnQPUw",
+        },
+        {
             name: 'Mystery',
             url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKFmbAgnAuu1BIi03n88eNxsF9rFZc9b9iCA&usqp=CAU",
         },
@@ -209,11 +213,21 @@ function BookList(props) {
         },
         {
             name: 'Story',
-            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx-dvhtuFpvUAPAKA35yrQENAB9BJxkvaZ4A&usqp=CAU",
+            url: "https://images2.thanhnien.vn/528068263637045248/2023/6/4/647d15a51acc0image-1685920300336959033976.jpg",
         },
     ])
+    const genres = ['Fiction', 'Thriller', 'Adventure', 'Fantasy', 'Mystery', 'Psychological', 'Story']
+    const [selectedGenre, setSelectedGenre] = useState(null);
     const [searchText, setSearchText] = useState('')
-    const filteredFoods = () => books.filter(eachBook => eachBook.name.toLowerCase().includes(searchText.toLowerCase()))
+
+    // Sắp xếp sách vào danh sách thể loại
+    books.forEach((book) => {
+        if (!genres[book.type]) {
+            genres[book.type] = [];
+        }
+        genres[book.type].push(book);
+    });
+    const filteredBooks = () => books.filter(eachBook => eachBook.name.toLowerCase().includes(searchText.toLowerCase()))
     return <View style={{
         flex: 1,
         backgroundColor: 'white',
@@ -263,62 +277,59 @@ function BookList(props) {
         }}>
             <View style={{ height: 1, backgroundColor: colors.inactive }} />
             <FlatList
-                horizontal
                 data={categories}
-                keyExtractor={item => item.name}
+                keyExtractor={(item) => item.name}
+                horizontal
                 renderItem={({ item }) => {
-                    return <TouchableOpacity
-                        onPress={() => {
-                            alert(`press ${item.name}`)
-                        }}
-                        style={{
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}>
-                        <Image style={{
-                            width: 50,
-                            height: 50,
-                            resizeMode: 'cover',
-                            borderRadius: 25,
-                            margin: 10,
-
-                        }}
-                            source={{
-                                uri: item.url,
-                            }} />
-                        <Text style={{ color: 'pink', fontSize: 12 }}>{item.name}</Text>
-                    </TouchableOpacity>
+                    return (
+                        <TouchableOpacity
+                            onPress={() => setSelectedGenre(item.name)}
+                            style={{
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>
+                            <Image
+                                style={{
+                                    width: 50,
+                                    height: 50,
+                                    resizeMode: 'cover',
+                                    borderRadius: 25,
+                                    margin: 10,
+                                }}
+                                source={{ uri: item.url }} />
+                            <Text style={{ color: 'pink', fontSize: 12 }}>{item.name}</Text>
+                        </TouchableOpacity>
+                    );
                 }}
-                style={{ flex: 1 }}>
-            </FlatList>
+            />
             <View style={{
                 height: 1,
                 backgroundColor: colors.inactive,
             }} />
         </View>
-        {filteredFoods().length > 0 ? <FlatList
-            data={filteredFoods()}
-            renderItem={({ item }) => <BookItems
-                onPress={() => {
-                    alert(`You press item's name: ${item.name}`)
-                }}
-                book={item}
-                key={item.name} />}
-            keyExtractor={eachBook => eachBook.name}
-        /> : <View style={{
-            flex: 1,
-            height: '100%',
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
-            <Text style={{
-                color: 'black',
-                fontSize: fontSize.h3
-            }}>No book found</Text>
-        </View>}
-        {/* <ScrollView>
-                {books.map(eachBook => <BookItems book = {eachBook} />)}
-            </ScrollView> */}
-    </View>
-}
+        {filteredBooks().length > 0 ?
+            (<FlatList
+                data={selectedGenre ? genres[selectedGenre] : books}
+                renderItem={({ item }) => (<BookItems
+                    onPress={() => {
+                        alert(`You press item's name: ${item.name}`)
+                    }}
+                    book={item}
+                    key={item.name} />)}
+                keyExtractor={eachBook => eachBook.name}
+            />) : (
+                <View style={{
+                    flex: 1,
+                    height: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <Text style={{
+                        color: 'black',
+                        fontSize: fontSize.h3
+                    }}>No book found</Text>
+                </View>
+            )}
+        </View >
+    }
 export default BookList

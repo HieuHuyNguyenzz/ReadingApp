@@ -6,6 +6,7 @@ import BookGridView from "./BookGrid/BookGridView";
 import Settings from "./Settings";
 import Password from "./Password";
 import Profile from "./Profile";
+import BookDetail from "./BookGrid/BookDetail"
 export {
     Welcome,
     Login,
@@ -15,4 +16,5 @@ export {
     Settings,
     Password,
     Profile,
+    BookDetail,
 }
