@@ -7,8 +7,9 @@ import {
 } from 'react-native';
 import { colors, fontSize, icons } from '../../constants';
 import FiveStars from "./FiveStars";
+import { Link } from "@react-navigation/native";
 function GridItem(props){
-    const {item, index, onPress} = props
+    const {item, index, onPress, onBookDetail} = props
 
     return <View style={{
         color: 'black',
@@ -21,33 +22,42 @@ function GridItem(props){
         borderWidth: 1,
         borderColor: colors.inactive
 
-    }}>
-        <View style={{ flexDirection: 'row', marginTop: 10, marginHorizontal: 5, }}>
-            <Image
-                style={{
-                    width: 70,
-                    height: 90,
-                    resizeMode: 'cover',
-                    borderRadius: 20,
-                    marginRight: 15,
-                }}
-                source={{ uri: item.url }} />
-            <Text style={{
-                color: 'black',
-                fontSize: fontSize.h2,
-                flex: 1,
-                textAlign: 'right'
-            }}>$ {item.price}</Text>
-        </View>
-        <Text style={{
-            color: colors.primary,
-            fontWeight: 'bold',
-            fontSize: fontSize.h6,
-            marginHorizontal: 10,
-            marginTop: 5,
-        }}>
-            {item.nameBook}
-        </Text>
+    }}
+    >
+        <TouchableOpacity onPress={onBookDetail}>
+            <View style={{
+                display: "flex",
+                flexDirection: "column",
+            }}>
+                <View style={{ display: "flex", flexDirection: 'row', marginTop: 10, marginHorizontal: 5, }}>
+                    <Image
+                        style={{
+                            width: 70,
+                            height: 90,
+                            resizeMode: 'cover',
+                            borderRadius: 20,
+                            marginRight: 15,
+                        }}
+                        source={{ uri: item.url }} />
+                    <Text style={{
+                        color: 'black',
+                        fontSize: fontSize.h2,
+                        flex: 1,
+                        marginLeft: "auto"
+                    }}>$ {item.price}</Text>
+                </View>
+                <Text style={{
+                    color: colors.primary,
+                    fontWeight: 'bold',
+                    fontSize: fontSize.h6,
+                    marginHorizontal: 10,
+                    marginTop: 5,
+                    wordBreak: "break-word",
+                }}>
+                    {item.nameBook}
+                </Text>
+            </View>
+        </TouchableOpacity>
         {
             item.specifications.map(specifications =>
                 <Text

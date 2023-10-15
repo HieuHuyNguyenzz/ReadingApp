@@ -15,6 +15,7 @@ import {
 import { images, colors, icons, fontSize } from '../../constants'
 import GridItem from "./GridItem";
 
+
 function BookGridView(props) {
     const [products, setProducts] = useState([
         {
@@ -42,6 +43,7 @@ function BookGridView(props) {
             stars: 5,
         },
         {
+            id: 3,
             url: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTWYniXJSbbjwtJ258myLWOiGa-ZpSiXV5JFeEfHdl_Ger7mlF_',
             price: 88,
             nameBook: 'War And Peace',
@@ -126,6 +128,7 @@ function BookGridView(props) {
             stars: 2,
         },
     ])
+    const {navigation} = props;
     console.log(products)
     return <View style={{
         flex: 1,
@@ -148,6 +151,9 @@ function BookGridView(props) {
                         return eachProduct
                     })
                     setProducts(clonedProducts)
+                }}
+                onBookDetail={() => {
+                    navigation.navigate("BookDetail")
                 }}
             />}
         />

@@ -5,20 +5,6 @@ import { images, icons, colors } from '../constants/index'
 import { UIbuttons } from "../components";
 
 function Welcome(props) {
-    const [accountTypes, setAccountTypes] = useState([
-        {
-            name: '1-15',
-            isSelected: true
-        },
-        {
-            name: '15-18',
-            isSelected: false
-        },
-        {
-            name: '19-100',
-            isSelected: false
-        },
-    ])
     const {navigation, route} = props
     const {navigate, goBack} = navigation
     return <View style={{
@@ -86,20 +72,6 @@ function Welcome(props) {
                     color: '#FAEBD7',
                     fontSize: 12,
                 }}>Please select your account type</Text>
-            </View>
-            <View style={{
-                flex: 40,
-            }}>
-                {accountTypes.map(accountType =>
-                    <UIbuttons key={accountType.name} onPress={() => {
-                        let newAccountTypes = accountTypes.map(eachAccountType => {
-                            return { ...eachAccountType, isSelected: eachAccountType.name == accountType.name }
-                        })
-                        setAccountTypes(newAccountTypes);
-                        alert('ahihi')
-                    }} title={accountType.name}
-                        isSelected={accountType.isSelected}
-                    />)}
             </View>
             <View style={{
                 flex: 20,

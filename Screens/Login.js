@@ -70,7 +70,7 @@ function Login(props) {
                     fontSize: fontSize.h5,
                     color: colors.primary
                 }} >
-                    Email
+                    Username
                 </Text>
                 <TextInput
                     onChangeText={(text) => {
