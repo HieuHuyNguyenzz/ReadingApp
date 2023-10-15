@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.IndentityModel.Tokens.Jwt;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Backend.Dto.Users;
+using Backend.Dto;
 using Backend.Entities;
+using Backend.Services.Interfaces;
+
 
 
 
@@ -38,7 +40,7 @@ namespace Backend.Controllers
             {
                 try
                 {
-                    User user = _userService.GetbyId(id);
+                    Users user = _userService.GetbyId(id);
                     return Ok(user);
                 }
                 catch (Exception ex)
@@ -75,7 +77,7 @@ namespace Backend.Controllers
             }
 
             [HttpPut("update-user")]
-            public IActionResult UpdateUser(User input)
+            public IActionResult UpdateUser(Users input)
             {
                 try
                 {
