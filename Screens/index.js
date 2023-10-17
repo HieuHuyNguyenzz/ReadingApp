@@ -7,6 +7,8 @@ import Settings from "./Settings";
 import Password from "./Password";
 import Profile from "./Profile";
 import BookDetail from "./BookGrid/BookDetail"
+import Cart from "./Cart";
+
 export {
     Welcome,
     Login,
@@ -17,4 +19,5 @@ export {
     Password,
     Profile,
     BookDetail,
+    Cart,
 }

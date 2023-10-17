@@ -24,7 +24,8 @@ function _geColorFromStatus(status) {
             (status.toLowerCase().trim() == "coming soon" ? colors.warning : colors.success))
 }
 function BookItems(props) {
-    let { name, type, url, status, price, website, Etp, onPress } = props.book
+    let { name, type, url, status, price, website, Etp } = props.book
+    const {onPress} = props;
 
 
     return (<TouchableOpacity 

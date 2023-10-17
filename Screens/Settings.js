@@ -191,37 +191,41 @@ function Settings(props) {
                     }}
                 />
             </View>
-            <View style={{
-                flexDirection: 'row',
-                paddingVertical: 10,
-                alignItems: 'center',
-            }}>
-                <Image
-                    source={icons.logout}
-                    style={{
-                        marginStart: 10,
-                        height: 20,
-                        width: 20,
-                    }}
-                />
-                <Text style={{
-                    color: 'black',
-                    fontSize: 10,
-                    paddingStart: 10,
+            <TouchableOpacity
+            onPress={() => props.navigation.navigate("Login")}
+            >
+                <View style={{
+                    flexDirection: 'row',
+                    paddingVertical: 10,
+                    alignItems: 'center',
                 }}>
-                    Sign Out
-                </Text>
-                <View style={{ flex: 1, }} />
-                <Image
-                    source={icons.arrow}
-                    style={{
-                        paddingEnd: 10,
-                        height: 20,
-                        width: 20,
-                        opacity: 0.5,
-                    }}
-                />
-            </View>
+                    <Image
+                        source={icons.logout}
+                        style={{
+                            marginStart: 10,
+                            height: 20,
+                            width: 20,
+                        }}
+                    />
+                    <Text style={{
+                        color: 'black',
+                        fontSize: 10,
+                        paddingStart: 10,
+                    }}>
+                        Sign Out
+                    </Text>
+                    <View style={{ flex: 1, }} />
+                    <Image
+                        source={icons.arrow}
+                        style={{
+                            paddingEnd: 10,
+                            height: 20,
+                            width: 20,
+                            opacity: 0.5,
+                        }}
+                    />
+                </View>
+            </TouchableOpacity>
             <View style={{
                 height: 40,
                 backgroundColor: 'rgba(0,0,0,0.2)',

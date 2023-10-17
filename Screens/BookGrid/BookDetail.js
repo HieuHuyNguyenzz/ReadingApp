@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     Text,
     View,
@@ -16,6 +16,7 @@ import { faCartShopping, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesome } from "@expo/vector-icons";
 import { FlatList } from "react-native";
 import { ScrollView } from "react-native";
+
 const BookDetail = (props) => {
     return (
         <View style={styles.container}>
@@ -87,7 +88,7 @@ const BookDetail = (props) => {
                     <FontAwesome name="heart-o" color="#000" size={25} />
                     <TouchableOpacity
                         style={styles.btn}
-                        onPress={() => props.navigation.navigate("BookGridView")}
+                        onPress={() => props.navigation.navigate("UITabs")}
                     >
                         <Text style={styles.btnText}>Back</Text>
                     </TouchableOpacity>

@@ -312,7 +312,8 @@ function BookList(props) {
                 data={selectedGenre ? genres[selectedGenre] : books}
                 renderItem={({ item }) => (<BookItems
                     onPress={() => {
-                        alert(`You press item's name: ${item.name}`)
+                        // alert(`You press item's name: ${item.name}`)
+                        navigation.navigate("BookDetail")
                     }}
                     book={item}
                     key={item.name} />)}

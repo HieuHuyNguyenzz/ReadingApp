@@ -167,7 +167,10 @@ function Login(props) {
                         fontSize: fontSize.h5,
                         color: 'white',
                     }}
-                        onPress={() => navigation.navigate('UITabs')}
+                    
+                        onPress={() => {if(email != '' && password != ''){
+                            navigation.navigate('UITabs')
+                        }}}
                     >Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
