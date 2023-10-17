@@ -1,4 +1,4 @@
-export default{
+export default {
     primary: '#D9444B',
     inactive: 'rgba(0,0,0,0.5)',
     placeholder: 'rgba(0,0,0,0.8)',
