@@ -7,4 +7,10 @@ export default {
     warning: 'rgb(252,177,0)',
     success: 'rgb(1,161,79)',
     alert: 'rgb(236,69,90)',
+    white: '#FFF',
+    dark: '#000',
+    primary1: '#F9813A',
+    secondary: '#fedac5',
+    light: '#E5E5E5',
+    grey: '#908e8c',
 }

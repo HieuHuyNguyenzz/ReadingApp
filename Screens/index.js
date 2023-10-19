@@ -8,6 +8,8 @@ import Password from "./Password";
 import Profile from "./Profile";
 import BookDetail from "./BookGrid/BookDetail"
 import Cart from "./Cart";
+import AddBook from "./BookList/AddBook";
+import Checkout from "./CheckOut/Checkout";
 
 export {
     Welcome,
@@ -20,4 +22,6 @@ export {
     Profile,
     BookDetail,
     Cart,
+    AddBook,
+    Checkout
 }
