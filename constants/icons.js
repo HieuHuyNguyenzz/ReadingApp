@@ -24,4 +24,7 @@ export default {
     changepassword : require('../assets/password.png'),
     certificate : require('../assets/certificate.png'),
     terms : require('../assets/terms.png'),
+    bin: require('../assets/bin.png'),
+    addBook: require('../assets/more.png'),
+    addCart: require('../assets/addcart.png')
 }

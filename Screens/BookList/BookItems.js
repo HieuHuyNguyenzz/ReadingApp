@@ -25,7 +25,7 @@ function _geColorFromStatus(status) {
 }
 function BookItems(props) {
     let { name, type, url, status, price, website, Etp } = props.book
-    const {onPress} = props;
+    const { onPress } = props
 
 
     return (<TouchableOpacity 

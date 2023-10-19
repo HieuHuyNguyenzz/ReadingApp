@@ -220,6 +220,14 @@ function BookList(props) {
     const [selectedGenre, setSelectedGenre] = useState(null);
     const [searchText, setSearchText] = useState('')
 
+    const addNewBook = (newBook) => {
+        console.log("Newbook>>", newBook);
+        setBooks([newBook, ...books])
+    }
+
+    console.log("books>>", books);
+
+
     // Sắp xếp sách vào danh sách thể loại
     books.forEach((book) => {
         if (!genres[book.type]) {
@@ -262,8 +270,10 @@ function BookList(props) {
                     paddingStart: 32,
                 }} />
             <TouchableOpacity
-                onPress={() => navigation.navigate('BookGridView')}>
-                <Image source={icons.menu}
+                onPress={() => navigation.navigate('AddBook', {
+                    addNewBook
+                })}>
+                <Image source={icons.addBook}
                     style={{
                         width: 30,
                         height: 30,
@@ -331,6 +341,6 @@ function BookList(props) {
                     }}>No book found</Text>
                 </View>
             )}
-        </View >
-    }
+    </View >
+}
 export default BookList

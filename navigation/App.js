@@ -12,7 +12,7 @@ import {
     FlatList,
     Switch
 } from 'react-native'
-import { Login, Register, BookList, Welcome, Settings, BookGridView, Password, BookDetail } from '../Screens';
+import { Login, Register, BookList, Welcome, Settings, BookGridView, Password, BookDetail, Cart, AddBook, Checkout } from '../Screens';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigatior } from '@react-navigation/bottom-tabs'
@@ -31,8 +31,11 @@ function App(props) {
                 <Stack.Screen name="BookList" component={BookList} />
                 <Stack.Screen name="Settings" component={Settings} /> 
                 <Stack.Screen name="BookGridView" component={BookGridView} />
+                <Stack.Screen name="Cart" component={Cart} />
                 <Stack.Screen name="UITabs" component={UITabs} />
                 <Stack.Screen name="Password" component={Password} />
+                <Stack.Screen name="AddBook" component={AddBook} />
+                <Stack.Screen name="Checkout" component={Checkout} />
             </Stack.Navigator>
         </NavigationContainer>
     );

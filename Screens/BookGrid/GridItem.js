@@ -8,8 +8,8 @@ import {
 import { colors, fontSize, icons } from '../../constants';
 import FiveStars from "./FiveStars";
 import { Link } from "@react-navigation/native";
-function GridItem(props){
-    const {item, index, onPress, onBookDetail} = props
+function GridItem(props) {
+    const { item, index, onPress, onBookDetail } = props
 
     return <View style={{
         color: 'black',
@@ -79,12 +79,12 @@ function GridItem(props){
             position: "relative",
             gap: 6
         }}>
-            <View>
+            <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity
-                    onPress = {onPress}
+                    onPress={onPress}
                     style={{
-                        flexDirection: 'row',
-                        display: "flex"
+                        //flexDirection: 'row',
+                        //display: "flex"
                     }}>
                     <Image source={icons.heart}
                         style={{
@@ -92,7 +92,6 @@ function GridItem(props){
                             width: 20,
                             marginEnd: 5,
                         }}
-                        
                     />
                     <Text style={{
                         //color: '#2395ff',
@@ -101,6 +100,15 @@ function GridItem(props){
                         opacity: item.isSaved ? 0.5 : 1,
                         flex: 1
                     }}>Saved for later</Text>
+                </TouchableOpacity>
+                <View style={{flex:1}}/>
+                <TouchableOpacity>
+                    <Image source={icons.addCart}
+                        style={{
+                            width: 30,
+                            height: 30
+                        }}
+                    />
                 </TouchableOpacity>
             </View>
             <View style={{
