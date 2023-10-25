@@ -2,7 +2,7 @@
 {
     public class UpdateUserDto
     {
-        public int UsersId { get; set; }
+        public int Id { get; set; }
         public string UsersPassword { get; set; }
     }
 }

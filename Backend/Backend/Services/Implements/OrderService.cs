@@ -22,7 +22,7 @@ namespace Backend.Services.Implements
             var listOrder = from order in _dbContext.Orders
                             select new Order
                             {
-                                OrdersId = order.OrdersId,
+                                Id = order.Id,
                                 CusId = order.CusId,
                                 CustomerName = order.CustomerName,
                                 PhoneNumber = order.PhoneNumber,
@@ -75,7 +75,7 @@ namespace Backend.Services.Implements
         }
         public void Delete(int id)
         {
-            var order = _dbContext.Orders.FirstOrDefault((p) => p.CusId == id);
+            var order = _dbContext.Orders.FirstOrDefault((p) => p.Id == id);
             if (order != null)
             {
                 _dbContext.Orders.Remove(order);

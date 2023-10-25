@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Backend.Models;
 
-public partial class User
+public  class User
 {
-    public int UsersId { get; set; }
+    public int Id { get; set; }
 
     public string UserName { get; set; }
 

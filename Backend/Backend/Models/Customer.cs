@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Backend.Models;
 
-public partial class Customer
+public class Customer
 {
-    public int CusId { get; set; }
+    public int Id { get; set; }
 
     public string BookName { get; set; }
 
@@ -15,9 +15,5 @@ public partial class Customer
 
     public string BookDescription { get; set; }
 
-    public int Category { get; set; }
-
-    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
-
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public string Genre { get; set; }
 }

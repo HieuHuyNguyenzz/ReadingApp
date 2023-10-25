@@ -22,12 +22,12 @@ namespace Backend.Services.Implements
             var listStudent = from customer in _dbContext.Customers
                               select new Customer
                               {
-                                  CusId = customer.CusId,
+                                  Id = customer.Id,
                                   BookName = customer.BookName,
                                   BookImage = customer.BookImage,
                                   Price = customer.Price,
                                   BookDescription = customer.BookDescription,
-                                  Category = customer.Category
+                                  Genre = customer.Genre
                               };
             return listStudent.ToList();
 
@@ -52,7 +52,7 @@ namespace Backend.Services.Implements
         }
         public Customer GetbyId(int id)
         {
-            var student = _dbContext.Customers.FirstOrDefault((p) => p.CusId == id);
+            var student = _dbContext.Customers.FirstOrDefault((p) => p.Id == id);
             return student;
         }
         public void Create(CreateCustomerDto input)
@@ -63,13 +63,13 @@ namespace Backend.Services.Implements
                 Price = input.Price,
                 BookName = input.BookName,
                 BookDescription = input.BookDescription,
-                Category = input.Category
+                Genre = input.Genre
             });
             _dbContext.SaveChanges();
         }
         public void Update(UpdateCustomerDto input)
         {
-            var customer = _dbContext.Customers.FirstOrDefault(p => p.CusId == input.CusId);
+            var customer = _dbContext.Customers.FirstOrDefault(p => p.Id == input.Id);
             if (customer != null)
             {
                 customer.Price = input.Price;
@@ -81,7 +81,7 @@ namespace Backend.Services.Implements
         }
         public void Delete(int id)
         {
-            var customer = _dbContext.Customers.FirstOrDefault((p) => p.CusId == id);
+            var customer = _dbContext.Customers.FirstOrDefault((p) => p.Id == id);
             if (customer != null)
             {
                 _dbContext.Customers.Remove(customer);
