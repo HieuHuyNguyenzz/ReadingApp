@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Backend.Models;
 
-public partial class Order
+public  class Order
 {
-    public int OrdersId { get; set; }
+    public int Id { get; set; }
 
     public int CusId { get; set; }
 
@@ -29,5 +29,5 @@ public partial class Order
 
     public string OrdersStatus { get; set; }
 
-    public virtual Customer Cus { get; set; }
+
 }

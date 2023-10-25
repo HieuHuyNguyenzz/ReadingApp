@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Backend.Models;
 
-public partial class Cart
+public  class Cart
 {
-    public int CartId { get; set; }
+    public int Id { get; set; }
 
     public int CusId { get; set; }
 
@@ -17,5 +17,5 @@ public partial class Cart
 
     public string BookDescription { get; set; }
 
-    public virtual Customer Cus { get; set; }
+
 }

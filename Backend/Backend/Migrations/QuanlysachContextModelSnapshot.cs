@@ -23,103 +23,92 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Cart", b =>
                 {
-                    b.Property<int>("CartId")
-                        .HasColumnType("int")
-                        .HasColumnName("Cart_id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BookDescription")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("BookImage")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("BookName")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("CusId")
-                        .HasColumnType("int")
-                        .HasColumnName("Cus_id");
+                        .HasColumnType("int");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.HasKey("CartId")
-                        .HasName("PK__Cart__D6862FC14657D799");
-
-                    b.HasIndex("CusId");
+                    b.HasKey("Id");
 
                     b.ToTable("Cart", (string)null);
                 });
 
             modelBuilder.Entity("Backend.Models.Customer", b =>
                 {
-                    b.Property<int>("CusId")
-                        .HasColumnType("int")
-                        .HasColumnName("Cus_id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BookDescription")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("BookImage")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("BookName")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.HasKey("CusId")
-                        .HasName("PK__Customer__0AC8019F03CDA31D");
+                    b.HasKey("Id");
 
                     b.ToTable("Customer", (string)null);
                 });
 
             modelBuilder.Entity("Backend.Models.Order", b =>
                 {
-                    b.Property<int>("OrdersId")
-                        .HasColumnType("int")
-                        .HasColumnName("Orders_id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BookImage")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("BookName")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("CusId")
-                        .HasColumnType("int")
-                        .HasColumnName("Cus_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("CustomerName")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Discount")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("DiscountPrice")
@@ -130,102 +119,62 @@ namespace Backend.Migrations
 
                     b.Property<string>("OrdersAddress")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("Orders_Address");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("OrdersStatus")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("Orders_Status");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(100)")
+                        .HasDefaultValue("Chờ xác nhận");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.HasKey("OrdersId")
-                        .HasName("PK__Orders__B2D00CA45A5E366D");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CusId");
-
-                    b.ToTable("Orders");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("Backend.Models.User", b =>
                 {
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int")
-                        .HasColumnName("Users_id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("UserType")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(2);
 
                     b.Property<string>("UsersPassword")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("Users_password");
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("UsersId")
-                        .HasName("PK__Users__EB6B2D45ADE96DC3");
+                    b.HasKey("Id");
 
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Backend.Models.Cart", b =>
-                {
-                    b.HasOne("Backend.Models.Customer", "Cus")
-                        .WithMany("Carts")
-                        .HasForeignKey("CusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_C1");
-
-                    b.Navigation("Cus");
-                });
-
-            modelBuilder.Entity("Backend.Models.Order", b =>
-                {
-                    b.HasOne("Backend.Models.Customer", "Cus")
-                        .WithMany("Orders")
-                        .HasForeignKey("CusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Order1");
-
-                    b.Navigation("Cus");
-                });
-
-            modelBuilder.Entity("Backend.Models.Customer", b =>
-                {
-                    b.Navigation("Carts");
-
-                    b.Navigation("Orders");
+                    b.ToTable("User", (string)null);
                 });
 #pragma warning restore 612, 618
         }

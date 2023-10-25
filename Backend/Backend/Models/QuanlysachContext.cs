@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Backend.Constants;
 
 namespace Backend.Models;
 
@@ -24,87 +25,66 @@ public partial class QuanlysachContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning  protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-2LQT3CS;Initial Catalog=QUANLYSACH;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+    {
+
+    }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cart>(entity =>
         {
-            entity.HasKey(e => e.CartId).HasName("PK__Cart__D6862FC14657D799");
-
             entity.ToTable("Cart");
-
-            entity.Property(e => e.CartId)
-                .ValueGeneratedNever()
-                .HasColumnName("Cart_id");
-            entity.Property(e => e.BookDescription).HasMaxLength(50);
-            entity.Property(e => e.BookImage)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.BookName).HasMaxLength(50);
-            entity.Property(e => e.CusId).HasColumnName("Cus_id");
-
-            entity.HasOne(d => d.Cus).WithMany(p => p.Carts)
-                .HasForeignKey(d => d.CusId)
-                .HasConstraintName("FK_C1");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).ValueGeneratedOnAdd().IsRequired();
+            entity.Property(e => e.CusId).HasColumnType("int").IsRequired();
+            entity.Property(e => e.BookName).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.Price).HasColumnType("int").IsRequired();
+            entity.Property(e => e.BookImage).HasColumnType("varchar(max)").IsRequired();
+            entity.Property(e => e.BookDescription).HasColumnType("nvarchar(1000)").IsRequired();
         });
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CusId).HasName("PK__Customer__0AC8019F03CDA31D");
-
             entity.ToTable("Customer");
-
-            entity.Property(e => e.CusId)
-                .ValueGeneratedNever()
-                .HasColumnName("Cus_id");
-            entity.Property(e => e.BookDescription).HasMaxLength(50);
-            entity.Property(e => e.BookImage)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.BookName).HasMaxLength(50);
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).ValueGeneratedOnAdd().IsRequired();
+            entity.Property(e => e.BookName).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.Price).HasColumnType("int").IsRequired();
+            entity.Property(e => e.BookImage).HasColumnType("varchar(max)").IsRequired();
+            entity.Property(e => e.BookDescription).HasColumnType("nvarchar(1000)").IsRequired();
+            entity.Property(e => e.Genre).HasColumnType("nvarchar(50)").IsRequired();
         });
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.OrdersId).HasName("PK__Orders__B2D00CA45A5E366D");
-
-            entity.Property(e => e.OrdersId)
-                .ValueGeneratedNever()
-                .HasColumnName("Orders_id");
-            entity.Property(e => e.BookImage).HasMaxLength(50);
-            entity.Property(e => e.BookName).HasMaxLength(50);
-            entity.Property(e => e.CusId).HasColumnName("Cus_id");
-            entity.Property(e => e.CustomerName).HasMaxLength(50);
-            entity.Property(e => e.Discount).HasMaxLength(50);
-            entity.Property(e => e.OrdersAddress)
-                .HasMaxLength(50)
-                .HasColumnName("Orders_Address");
-            entity.Property(e => e.OrdersStatus)
-                .HasMaxLength(50)
-                .HasColumnName("Orders_Status");
-            entity.Property(e => e.PhoneNumber).HasMaxLength(50);
-
-            entity.HasOne(d => d.Cus).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.CusId)
-                .HasConstraintName("FK_Order1");
+            entity.ToTable("Order");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).ValueGeneratedOnAdd().IsRequired();
+            entity.Property(e => e.CusId).HasColumnType("int").IsRequired();
+            entity.Property(e => e.CustomerName).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.PhoneNumber).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.OrdersAddress).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.BookName).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.Price).HasColumnType("int").IsRequired();
+            entity.Property(e => e.Discount).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.DiscountPrice).HasColumnType("int").IsRequired();
+            entity.Property(e => e.FinalPrice).HasColumnType("int").IsRequired();
+            entity.Property(e => e.BookImage).HasColumnType("varchar(max)").IsRequired();
+            entity.Property(e => e.OrdersStatus).HasColumnType("nvarchar(100)").HasDefaultValue("Chờ xác nhận").IsRequired();
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UsersId).HasName("PK__Users__EB6B2D45ADE96DC3");
-
-            entity.Property(e => e.UsersId)
-                .ValueGeneratedNever()
-                .HasColumnName("Users_id");
-            entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.FullName).HasMaxLength(50);
-            entity.Property(e => e.Phone).HasMaxLength(50);
-            entity.Property(e => e.UserName).HasMaxLength(50);
-            entity.Property(e => e.UsersPassword)
-                .HasMaxLength(50)
-                .HasColumnName("Users_password");
+            entity.ToTable("User");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).ValueGeneratedOnAdd().IsRequired();
+            entity.Property(e => e.UserName).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.FullName).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.UsersPassword).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.Email).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.Phone).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.UserType).HasColumnType("int").HasDefaultValue(UserTypes.Customer).IsRequired();
         });
 
         OnModelCreatingPartial(modelBuilder);

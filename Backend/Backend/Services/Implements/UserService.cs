@@ -32,7 +32,7 @@ namespace Backend.Services.Implements
 
                            select new User
                            {
-                               UsersId = user.UsersId,
+                               Id = user.Id,
                                FullName = user.FullName,
                                UserName = user.UserName,
                                UsersPassword = user.UsersPassword,
@@ -42,10 +42,10 @@ namespace Backend.Services.Implements
                            };
             foreach (var items in listUser)
             {
-                int total = _dbContext.Orders.Where(o => o.CusId == items.UsersId).Sum(i => i.FinalPrice);
+                int total = _dbContext.Orders.Where(o => o.CusId == items.Id).Sum(i => i.FinalPrice);
                 var user = new UserPriceDto()
                 {
-                    UsersId = items.UsersId,
+                    Id = items.Id,
                     FullName = items.FullName,
                     UserName = items.UserName,
                     UsersPassword = items.UsersPassword,
@@ -61,7 +61,7 @@ namespace Backend.Services.Implements
 
         public void UpdateUser(User input)
         {
-            var user = _dbContext.Users.FirstOrDefault(p => p.UsersId == input.UsersId);
+            var user = _dbContext.Users.FirstOrDefault(p => p.Id == input.Id);
             if (user != null)
             {
                 user.FullName = input.FullName;
@@ -73,7 +73,7 @@ namespace Backend.Services.Implements
 
         public void DeleteUser(int id)
         {
-            var user = _dbContext.Users.FirstOrDefault(p => p.UsersId == id);
+            var user = _dbContext.Users.FirstOrDefault(p => p.Id == id);
             if (user != null)
             {
                 _dbContext.Users.Remove(user);
@@ -83,7 +83,7 @@ namespace Backend.Services.Implements
 
         public User GetbyId(int id)
         {
-            var user = _dbContext.Users.FirstOrDefault((p) => p.UsersId == id);
+            var user = _dbContext.Users.FirstOrDefault((p) => p.Id == id);
             return user;
         }
         public void Create(CreateUserDto input)
@@ -105,7 +105,7 @@ namespace Backend.Services.Implements
         }
         public void Update(UpdateUserDto input)
         {
-            var user = _dbContext.Users.FirstOrDefault(p => p.UsersId == input.UsersId);
+            var user = _dbContext.Users.FirstOrDefault(p => p.Id == input.Id);
             if (user != null)
             {
                 user.UsersPassword = CommonUtils.CreateMD5(input.UsersPassword);
@@ -120,7 +120,7 @@ namespace Backend.Services.Implements
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
                 var claims = new List<Claim>
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub,user.UsersId.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Sub,user.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Name,user.UserName),
                     new Claim(CustomClaimTypes.UserType,user.UserType.ToString())
                 };

@@ -21,7 +21,7 @@ namespace Backend.Services.Implements
             var listCart = from cart in _dbContext.Carts
                            select new Cart
                            {
-                               CartId = cart.CartId,
+                               Id = cart.Id,
                                CusId = cart.CusId,
                                BookName = cart.BookName,
                                BookImage = cart.BookImage,
@@ -49,7 +49,7 @@ namespace Backend.Services.Implements
         }
         public Cart GetbyId(int id)
         {
-            var cart = _dbContext.Carts.FirstOrDefault((p) => p.CartId == id);
+            var cart = _dbContext.Carts.FirstOrDefault((p) => p.Id == id);
             return cart;
         }
         public void Create(CreateCartDto input)
@@ -67,7 +67,7 @@ namespace Backend.Services.Implements
         }
         public void Delete(int id)
         {
-            var cart = _dbContext.Carts.FirstOrDefault((p) => p.CartId == id);
+            var cart = _dbContext.Carts.FirstOrDefault((p) => p.Id == id);
             if (cart != null)
             {
                 _dbContext.Carts.Remove(cart);
