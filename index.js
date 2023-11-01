@@ -2,11 +2,26 @@
  * @format
  */
 import React from 'react';
-import { AppRegistry } from 'react-native';
-import { name as appName } from './app.json';
-import { Login, Register, BookList, Welcome, Settings, BookGridView, Profile, BookDetail, List, Cart, AddBook, Checkout } from './Screens';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import {AppRegistry} from 'react-native';
+import {name as appName} from './app.json';
+import {
+  Login,
+  Register,
+  BookList,
+  Welcome,
+  Settings,
+  BookGridView,
+  Profile,
+  BookDetail,
+  List,
+  Cart,
+  AddBook,
+  Checkout,
+  Order,
+  OrderItem,
+} from './Screens';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
 import App from './navigation/App.js';
 // const Stack = createNativeStackNavigator()
 
@@ -25,4 +40,4 @@ import App from './navigation/App.js';
 //     );
 // }
 
-AppRegistry.registerComponent(appName, () => () => <App />)
+AppRegistry.registerComponent(appName, () => () => <App />);
