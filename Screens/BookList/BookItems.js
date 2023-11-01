@@ -24,7 +24,7 @@ function _geColorFromStatus(status) {
             (status.toLowerCase().trim() == "coming soon" ? colors.warning : colors.success))
 }
 function BookItems(props) {
-    let { name, type, url, status, price, website, Etp } = props.book
+    let { bookName: name, genre: type, bookImage: url, status, price, website, Etp } = props.book
     const { onPress } = props
 
 
@@ -60,7 +60,7 @@ function BookItems(props) {
                 height: 1,
                 backgroundColor: 'black',
             }} />
-            <View style={{
+            {/* <View style={{
                 flexDirection: 'row',
             }}>
                 <Text style={{
@@ -71,7 +71,7 @@ function BookItems(props) {
                     color: _geColorFromStatus(status),
                     fontSize: 12,
                 }}>{status.toUpperCase()}</Text>
-            </View>
+            </View> */}
             <Text style={{
                 color: colors.inactive,
                 fontSize: 12,
@@ -80,10 +80,10 @@ function BookItems(props) {
                 color: colors.inactive,
                 fontSize: 12,
             }}>Genres: {type}</Text>
-            <Text style={{
+            {/* <Text style={{
                 color: colors.inactive,
                 fontSize: 12,
-            }}>Website: {website}</Text>
+            }}>Website: {website}</Text> */}
             <View
                 style={{
                     flexDirection: 'row',

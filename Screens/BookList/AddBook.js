@@ -9,6 +9,7 @@ const defaultBook =  {
     price: "",
     website: "",
     Etp: "",
+    description: ""
 };
 function AddBook({ navigation, route }) {
     const [book, setBook] = useState(defaultBook);
@@ -22,11 +23,10 @@ function AddBook({ navigation, route }) {
         setBook({...book, [name]: value})
     }
 
-    const {name, type, status, etp, price, website, url} = book;
+    const {name, type, status, etp, price, description, url} = book;
 
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>ID:</Text>
             <Text style={styles.label}>Tên Sách:</Text>
             <TextInput
                 style={styles.input}
@@ -45,13 +45,13 @@ function AddBook({ navigation, route }) {
                 onChangeText={text => onChange("type", text)}
             />
 
-            <Text style={styles.label}>Trạng thái:</Text>
+            <Text style={styles.label}>Mô tả:</Text>
             <TextInput
                 style={styles.input}
-                placeholder="Nhập trạng thái sách"
+                placeholder="Nhập mô tả"
                 placeholderTextColor="rgba(0,0,0,0.4)"
-                value={status}
-                onChangeText={text => onChange("status", text)}
+                value={description}
+                onChangeText={text => onChange("description", text)}
             />
 
             <Text style={styles.label}>Price:</Text>
@@ -63,16 +63,16 @@ function AddBook({ navigation, route }) {
                 onChangeText={text => onChange("price", text)}
             />
 
-            <Text style={styles.label}>Website:</Text>
+            {/* <Text style={styles.label}>Website:</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Nhập trang bán sách"
                 placeholderTextColor="rgba(0,0,0,0.4)"
                 value={website}
                 onChangeText={text => onChange("website", text)}
-            />
+            /> */}
 
-            <Text style={styles.label}>URL:</Text>
+            <Text style={styles.label}>Ảnh:</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Nhập link ảnh sách"
@@ -81,14 +81,14 @@ function AddBook({ navigation, route }) {
                 onChangeText={text => onChange("url", text)}
             />
 
-            <Text style={styles.label}>Etp:</Text>
+            {/* <Text style={styles.label}>Etp:</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Nhập thể loại sách"
                 placeholderTextColor="rgba(0,0,0,0.4)"
                 value={etp}
                 onChangeText={text => onChange("etp", text)}
-            />
+            /> */}
 
             <TouchableNativeFeedback
                 background={TouchableNativeFeedback.Ripple('#D9444B', false)} // Change color on press
