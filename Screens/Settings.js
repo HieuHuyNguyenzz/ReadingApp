@@ -30,12 +30,14 @@ function Settings(props) {
         <View
           style={{
             height: 40,
-            backgroundColor: 'rgba(0,0,0,0.2)',
+            backgroundColor: '#b483eb',
             justifyContent: 'center',
+            borderRadius: 3,
+            marginTop: 1,
           }}>
           <Text
             style={{
-              color: 'red',
+              color: 'white',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -59,7 +61,7 @@ function Settings(props) {
           />
           <Text
             style={{
-              color: 'black',
+              color: '#b483eb',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -92,22 +94,14 @@ function Settings(props) {
           />
           <Text
             style={{
-              color: 'black',
+              color: '#b483eb',
               fontSize: 10,
               paddingStart: 10,
             }}>
             Environment
           </Text>
           <View style={{flex: 1}} />
-          <Text
-            style={{
-              color: 'black',
-              fontSize: 10,
-              paddingEnd: 10,
-              opacity: 0.5,
-            }}>
-            Production
-          </Text>
+
           <Image
             source={icons.arrow}
             style={{
@@ -121,12 +115,13 @@ function Settings(props) {
         <View
           style={{
             height: 40,
-            backgroundColor: 'rgba(0,0,0,0.2)',
+            backgroundColor: '#b483eb',
             justifyContent: 'center',
+            borderRadius: 3,
           }}>
           <Text
             style={{
-              color: 'red',
+              color: 'white',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -149,7 +144,7 @@ function Settings(props) {
           />
           <Text
             style={{
-              color: 'black',
+              color: '#b483eb',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -182,7 +177,7 @@ function Settings(props) {
           />
           <Text
             style={{
-              color: 'black',
+              color: '#b483eb',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -202,12 +197,13 @@ function Settings(props) {
         <View
           style={{
             height: 40,
-            backgroundColor: 'rgba(0,0,0,0.2)',
+            backgroundColor: '#b483eb',
             justifyContent: 'center',
+            borderRadius: 3,
           }}>
           <Text
             style={{
-              color: 'red',
+              color: 'white',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -230,7 +226,7 @@ function Settings(props) {
           />
           <Text
             style={{
-              color: 'black',
+              color: '#b483eb',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -238,8 +234,8 @@ function Settings(props) {
           </Text>
           <View style={{flex: 1}} />
           <Switch
-            trackColor={{false: colors.inactive, true: colors.primary}}
-            thumbColor={isEnabledLockApp ? colors.primary : colors.inactive}
+            trackColor={{false: colors.inactive, true: '#b483eb'}}
+            thumbColor={isEnabledLockApp ? '#b483eb' : colors.inactive}
             //ios_backgroundColor = "3e3e3e"
             onValueChange={() => {
               setEnabledLockApp(!isEnabledLockApp);
@@ -264,7 +260,7 @@ function Settings(props) {
           />
           <Text
             style={{
-              color: 'black',
+              color: '#b483eb',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -272,8 +268,8 @@ function Settings(props) {
           </Text>
           <View style={{flex: 1}} />
           <Switch
-            trackColor={{false: colors.inactive, true: colors.primary}}
-            thumbColor={isUseFingerPrint ? colors.primary : colors.inactive}
+            trackColor={{false: colors.inactive, true: '#b483eb'}}
+            thumbColor={isUseFingerPrint ? '#b483eb' : colors.inactive}
             //ios_backgroundColor = "3e3e3e"
             onValueChange={() => {
               setUseFingerPrint(!isUseFingerPrint);
@@ -298,7 +294,7 @@ function Settings(props) {
           />
           <Text
             style={{
-              color: 'black',
+              color: '#b483eb',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -306,10 +302,8 @@ function Settings(props) {
           </Text>
           <View style={{flex: 1}} />
           <Switch
-            trackColor={{false: colors.inactive, true: colors.primary}}
-            thumbColor={
-              isEnabledChangePassword ? colors.primary : colors.inactive
-            }
+            trackColor={{false: colors.inactive, true: '#b483eb'}}
+            thumbColor={isEnabledChangePassword ? '#b483eb' : colors.inactive}
             //ios_backgroundColor = "3e3e3e"
             onValueChange={() => {
               setEnabledChangePassword(!isEnabledChangePassword);
@@ -321,12 +315,13 @@ function Settings(props) {
         <View
           style={{
             height: 40,
-            backgroundColor: 'rgba(0,0,0,0.2)',
+            backgroundColor: '#b483eb',
             justifyContent: 'center',
+            borderRadius: 3,
           }}>
           <Text
             style={{
-              color: 'red',
+              color: 'white',
               fontSize: 10,
               paddingStart: 10,
             }}>
@@ -417,7 +412,7 @@ function Settings(props) {
             />
             <Text
               style={{
-                color: 'black',
+                color: '#b483eb',
                 fontSize: 10,
                 paddingStart: 10,
               }}>
@@ -452,7 +447,7 @@ function Settings(props) {
             />
             <Text
               style={{
-                color: 'black',
+                color: '#b483eb',
                 fontSize: 10,
                 paddingStart: 10,
               }}>
