@@ -151,7 +151,7 @@ function Cart(props) {
             textAlign: 'center',
             flex: 1,
             fontWeight: 'bold',
-            color: colors.primary,
+            color: '#b483eb',
           }}>
           My Cart
         </Text>
@@ -193,7 +193,7 @@ function Cart(props) {
           marginTop: 32,
           padding: 20,
         }}>
-        <Text style={{fontSize: 24, color: 'black', fontWeight: 'bold'}}>
+        <Text style={{fontSize: 24, color: '#b483eb', fontWeight: 'bold'}}>
           Totals
         </Text>
         <View
@@ -208,21 +208,21 @@ function Cart(props) {
               justifyContent: 'center',
               alignItems: 'center',
               fontSize: 16,
-              color: 'black',
+              color: '#b483eb',
             }}>
             Sub Total
           </Text>
           <View
             style={{
               height: 1,
-              borderColor: '#dddddd',
+              borderColor: '#b483eb',
               borderWidth: StyleSheet.hairlineWidth,
               flex: 1,
               marginHorizontal: 16,
               marginTop: 5,
             }}
           />
-          <Text style={{fontSize: 18, color: 'black', fontWeight: 'bold'}}>
+          <Text style={{fontSize: 18, color: '#b483eb', fontWeight: 'bold'}}>
             $
             {items.length > 0
               ? items.reduce((total, item, index) => {
@@ -250,7 +250,7 @@ function Cart(props) {
             width: 100,
             height: 50,
           }}>
-          <Text style={{color: colors.primary}}>Check Out</Text>
+          <Text style={{color: '#b483eb'}}>Check Out</Text>
         </TouchableOpacity>
       </View>
     </View>

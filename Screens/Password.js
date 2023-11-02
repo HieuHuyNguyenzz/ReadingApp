@@ -62,7 +62,7 @@ function Password(props) {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{
         flex: 100,
-        backgroundColor: 'pink',
+        backgroundColor: 'white',
       }}>
       <View
         style={{
@@ -73,7 +73,7 @@ function Password(props) {
         }}>
         <Text
           style={{
-            color: 'white',
+            color: '#b483eb',
             fontSize: fontSize.h2,
             fontWeight: 'bold',
             width: '50%',
@@ -81,7 +81,7 @@ function Password(props) {
           Change your password
         </Text>
         <Image
-          tintColor={colors.primary}
+          tintColor="#b483eb"
           source={icons.library}
           style={{
             width: 120,
@@ -93,7 +93,7 @@ function Password(props) {
       <View
         style={{
           flex: 45,
-          backgroundColor: 'white',
+          backgroundColor: '#b483eb',
           borderRadius: 20,
           margin: 10,
           padding: 10,
@@ -105,7 +105,7 @@ function Password(props) {
           <Text
             style={{
               fontSize: fontSize.h5,
-              color: colors.primary,
+              color: 'white',
             }}>
             Password
           </Text>
@@ -123,7 +123,7 @@ function Password(props) {
           <View
             style={{
               height: 1,
-              backgroundColor: 'pink',
+              backgroundColor: 'white',
               width: '100%',
               marginBottom: 10,
               marginHorizontal: 15,
@@ -137,7 +137,7 @@ function Password(props) {
           <Text
             style={{
               fontSize: fontSize.h5,
-              color: colors.primary,
+              color: 'white',
             }}>
             Re-password
           </Text>
@@ -155,7 +155,7 @@ function Password(props) {
           <View
             style={{
               height: 1,
-              backgroundColor: 'pink',
+              backgroundColor: 'white',
               width: '100%',
               marginBottom: 10,
               marginHorizontal: 15,
@@ -164,7 +164,7 @@ function Password(props) {
         </View>
         <View
           style={{
-            backgroundColor: 'pink',
+            backgroundColor: 'white',
             width: '100%',
             marginBottom: 5,
             marginHorizontal: 15,

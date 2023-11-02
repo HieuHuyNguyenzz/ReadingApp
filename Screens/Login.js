@@ -78,7 +78,7 @@ function Login(props) {
         }}>
         <Text
           style={{
-            color: 'black',
+            color: '#b483eb',
             fontSize: fontSize.h2,
             fontWeight: 'bold',
             width: '50%',
@@ -86,7 +86,7 @@ function Login(props) {
           Already have an Account ?
         </Text>
         <Image
-          tintColor={colors.primary}
+          tintColor="#b483eb"
           source={icons.library}
           style={{
             width: 120,
@@ -106,7 +106,7 @@ function Login(props) {
           <Text
             style={{
               fontSize: fontSize.h5,
-              color: colors.primary,
+              color: '#b483eb',
             }}>
             Username
           </Text>
@@ -128,7 +128,7 @@ function Login(props) {
           <Text
             style={{
               fontSize: fontSize.h5,
-              color: colors.primary,
+              color: '#b483eb',
             }}>
             Password
           </Text>
@@ -146,7 +146,7 @@ function Login(props) {
           <View
             style={{
               height: 1,
-              backgroundColor: 'pink',
+              backgroundColor: '#b483eb',
               width: '100%',
               marginBottom: 15,
               marginHorizontal: 15,
@@ -163,7 +163,7 @@ function Login(props) {
           }}></View>
         <Text
           style={{
-            color: 'red',
+            color: '#b483eb',
             marginBottom: 15,
             fontSize: fontSize.h5,
             marginHorizontal: 15,
@@ -181,7 +181,7 @@ function Login(props) {
             onPress={() => {}}
             style={{
               backgroundColor:
-                isValidationOK() == true ? colors.primary : colors.inactive,
+                isValidationOK() == true ? '#b483eb' : colors.inactive,
               alignItems: 'center',
               justifyContent: 'center',
               marginHorizontal: 30,
@@ -213,6 +213,7 @@ function Login(props) {
                 marginTop: 5,
                 fontSize: 12,
                 alignSelf: 'center',
+                color: '#b483eb',
               }}>
               New user ? Register now
             </Text>
@@ -252,7 +253,7 @@ function Login(props) {
             <View
               style={{
                 height: 1,
-                backgroundColor: 'black',
+                backgroundColor: '#b483eb',
                 flex: 1,
               }}></View>
             <Text
@@ -268,7 +269,7 @@ function Login(props) {
             <View
               style={{
                 height: 1,
-                backgroundColor: 'black',
+                backgroundColor: '#b483eb',
                 flex: 1,
               }}></View>
           </View>
