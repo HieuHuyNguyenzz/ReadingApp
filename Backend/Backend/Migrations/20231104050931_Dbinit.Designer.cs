@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(QuanlysachContext))]
-    [Migration("20231025120854_dbinit")]
-    partial class dbinit
+    [Migration("20231104050931_Dbinit")]
+    partial class Dbinit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,6 +63,10 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("BookDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)");
@@ -80,6 +84,13 @@ namespace Backend.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("preview")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("rate")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

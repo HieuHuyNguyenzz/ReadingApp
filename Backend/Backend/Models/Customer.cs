@@ -16,4 +16,8 @@ public class Customer
     public string BookDescription { get; set; }
 
     public string Genre { get; set; }
+    public string Author { get; set; }
+    public int rate { get; set; }
+    public string preview { get; set; }
+
 }

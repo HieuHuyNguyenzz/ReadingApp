@@ -5,7 +5,7 @@
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class dbinit : Migration
+    public partial class Dbinit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,7 +37,10 @@ namespace Backend.Migrations
                     Price = table.Column<int>(type: "int", nullable: false),
                     BookImage = table.Column<string>(type: "varchar(max)", nullable: false),
                     BookDescription = table.Column<string>(type: "nvarchar(1000)", nullable: false),
-                    Genre = table.Column<string>(type: "nvarchar(50)", nullable: false)
+                    Genre = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    rate = table.Column<int>(type: "int", nullable: false),
+                    preview = table.Column<string>(type: "nvarchar(1000)", nullable: false)
                 },
                 constraints: table =>
                 {

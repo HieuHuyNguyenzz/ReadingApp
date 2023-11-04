@@ -9,5 +9,8 @@ namespace Backend.Dto.Customers
         public int Price { get; set; }
         public string BookDescription { get; set; }
         public string Genre { get; set; }
+        public string Author { get; set; }
+        public int rate { get; set; }
+        public string preview { get; set; }
     }
 }
