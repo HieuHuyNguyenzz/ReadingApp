@@ -93,6 +93,7 @@ public partial class QuanlysachContext : DbContext
             entity.Property(e => e.UserType).HasColumnType("int").HasDefaultValue(UserTypes.Customer).IsRequired();
         });
 
+
         OnModelCreatingPartial(modelBuilder);
     }
 

@@ -81,7 +81,9 @@ namespace Backend.Services.Implements
                 customer.Price = input.Price;
                 customer.BookName = input.BookName;
                 customer.BookDescription = input.BookDescription;
-                
+                customer.Author = input.Author;
+                customer.rate = input.rate;
+                customer.preview = input.preview;
 
             }
             _dbContext.SaveChanges();
