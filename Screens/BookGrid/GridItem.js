@@ -161,7 +161,7 @@ function GridItem(props) {
           <View style={{}}>
             <AirbnbRating
               size={8}
-              defaultRating={item.rating}
+              defaultRating={item.rate}
               showRating={false}
               onFinishRating={handleRatingCompleted}
             />

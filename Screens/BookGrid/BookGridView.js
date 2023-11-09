@@ -12,10 +12,13 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {images, colors, icons, fontSize} from '../../constants';
 import GridItem from './GridItem';
 import {useFocusEffect} from '@react-navigation/native';
 import bookApis from '../api';
+import {fetchStatusEnum} from '../constants';
 
 function BookGridView(props, route) {
   // const { addBookToCart } = route.params;
@@ -26,22 +29,69 @@ function BookGridView(props, route) {
   // };
 
   const [products, setProducts] = useState([]);
+  const [status, setStatus] = useState(fetchStatusEnum.NONE);
+  const [isLoading, setIsLoading] = useState(true);
 
   useFocusEffect(
     useCallback(() => {
-      bookApis.getBooks(json => setProducts(json));
+      setStatus(fetchStatusEnum.LOADING);
+      bookApis.getBooks(json => {
+        setTimeout(() => {
+          setStatus(fetchStatusEnum.SUCCESS);
+          setProducts(json);
+          setIsLoading(false);
+        }, 100);
+      });
     }, []),
   );
 
   console.log('grid>>', products);
-
   const {navigation} = props;
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: 'white',
-      }}>
+
+  const renderContent = () => {
+    if (status == fetchStatusEnum.LOADING || isLoading) {
+      return (
+        <>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <FontAwesomeIcon
+              icon={faSpinner}
+              spinPulse
+              style={{
+                '--fa-primary-color': '#b961e5',
+                '--fa-secondary-color': '#cf45d9',
+              }}
+            />
+            <Text>Loading</Text>
+          </View>
+        </>
+      );
+    }
+
+    if (products.length == 0)
+      return (
+        <View
+          style={{
+            flex: 1,
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text
+            style={{
+              color: 'black',
+              fontSize: fontSize.h3,
+            }}>
+            No book found
+          </Text>
+        </View>
+      );
+
+    return (
       <FlatList
         data={products}
         numColumns={2}
@@ -78,7 +128,9 @@ function BookGridView(props, route) {
           );
         }}
       />
-    </View>
-  );
+    );
+  };
+
+  return <View style={{flex: 1}}>{renderContent()}</View>;
 }
 export default BookGridView;

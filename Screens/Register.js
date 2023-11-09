@@ -13,7 +13,6 @@ import {images, colors, icons, fontSize} from '../constants';
 import {isValidEmail, isValidPassword} from '../utilies/Validation';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import bookApis from './api';
-import {Alert} from 'react-native';
 
 function Register(props) {
   const [keyboardIsShown, setKeyboardIsShown] = useState(false);

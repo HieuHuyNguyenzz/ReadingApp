@@ -45,13 +45,30 @@ const BookDetail = ({route, navigation}) => {
       />
       <View style={styles.cont3}>
         <Text style={styles.title}>{item.bookName}</Text>
-        <Text style={styles.subtitle}>{item.genre}</Text>
+        <View
+          style={{
+            flexDirection: 'column',
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <Text style={styles.subtitle}>by </Text>
+            <Text style={{...styles.subtitle, color: '#b483eb'}}>
+              {item.author}
+            </Text>
+            <Text style={styles.subtitle}> (Author)</Text>
+          </View>
+          <Text style={styles.subtitle}>{item.genre}</Text>
+        </View>
         <View
           style={{
             ...styles.cont2,
             marginTop: 12,
           }}>
-          <Text style={{...styles.title, flex: 2, marginTop: 0}}>Rating</Text>
+          <Text style={{...styles.subtitle, flex: 2, marginTop: 0}}>
+            Rating
+          </Text>
           <View>
             {/* <FiveStars
               styleItem={{
@@ -65,7 +82,7 @@ const BookDetail = ({route, navigation}) => {
               onFinishRating={handleRatingCompleted}
               showRating={false}
             /> */}
-            <FiveStars numberOfStars={item.rating} />
+            <FiveStars numberOfStars={item.rate} />
           </View>
         </View>
         <View style={{display: 'flex', flexDirection: 'row', marginTop: 12}}>
@@ -92,11 +109,15 @@ const BookDetail = ({route, navigation}) => {
           <Text style={styles.text}>{item.bookDescription}</Text>
         </ScrollView>
         <View style={styles.cont1}>
-          <FontAwesome name="heart-o" color="#000" size={25} />
           <TouchableOpacity
             style={styles.btn}
             onPress={() => navigation.navigate('UITabs')}>
             <Text style={styles.btnText}>Back</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{...styles.btn}}
+            onPress={() => navigation.navigate('Preview', {item})}>
+            <Text style={styles.btnText}>Preview</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -125,7 +146,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   btn: {
-    backgroundColor: '#E2443B',
+    backgroundColor: '#b483eb',
     paddingHorizontal: 60,
     paddingVertical: 12,
     borderRadius: 30,

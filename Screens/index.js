@@ -12,6 +12,7 @@ import AddBook from './BookList/AddBook';
 import Checkout from './CheckOut/Checkout';
 import Order from './CheckOut/Order';
 import OrderItem from './CheckOut/OrderItem';
+import Preview from './BookGrid/ReadSample';
 
 export {
   Welcome,
@@ -28,4 +29,5 @@ export {
   Checkout,
   Order,
   OrderItem,
+  Preview,
 };

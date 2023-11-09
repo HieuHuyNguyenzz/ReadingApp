@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {fetchStatusEnum} from '../constants/index';
 import cartStore from '../stores/CartStore';
 import {useFocusEffect} from '@react-navigation/native';
 import {colors, icons, images} from '../../constants';
@@ -26,71 +27,6 @@ function _geColorFromStatus(status) {
     ? 'purple'
     : 'green';
 }
-
-// const OrderItem = ({item}) => {
-//   return (
-//     <View
-//       style={{
-//         ...styles.shadowContainerStyle,
-//         marginVertical: 10,
-//         marginHorizontal: 10,
-//         flexDirection: 'row',
-//       }}>
-//       <Image
-//         source={{uri: item.url}}
-//         style={{
-//           width: 100,
-//           height: 'auto',
-//           marginHorizontal: 10,
-//           marginVertical: 10,
-//         }}
-//       />
-//       <View
-//         style={{
-//           display: 'flex',
-//           flexDirection: 'column',
-//           padding: 10,
-//           flex: 1,
-//         }}>
-//         <Text
-//           style={{
-//             marginTop: 10,
-//             fontWeight: 'bold',
-//             fontSize: 18,
-//             color: 'black',
-//           }}>
-//           {item.nameBook}
-//         </Text>
-//         <Text
-//           style={{
-//             marginTop: 5,
-//             fontSize: 18,
-//             color: 'black',
-//             opacity: 0.5,
-//           }}>
-//           $ {item.price}
-//         </Text>
-//         <TouchableOpacity
-//           style={{
-//             alignItems: 'right',
-//             flexDirection: 'row',
-//             padding: 4,
-//           }}
-//           onPress={remove}>
-//           <Image
-//             style={{
-//               width: 40,
-//               height: 40,
-//               marginLeft: 'auto',
-//             }}
-//             source={icons.bin}
-//           />
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   );
-// };
-
 const OrderIt = ({item, navigation}) => {
   const profile = profileStore.getProfile();
 
@@ -182,10 +118,29 @@ function Order(props) {
     bookName,
     customerName,
   } = props;
+  const [products, setProducts] = useState([]);
+  const [status, setStatus] = useState(fetchStatusEnum.NONE);
+  const [isLoading, setIsLoading] = useState(true);
   const {isSelected, onPress} = props;
   const [items, setItems] = useState([]);
   const [randomStatus, setRandomStatus] = useState('');
   const profile = profileStore.getProfile();
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     setStatus(fetchStatusEnum.LOADING);
+  //     setRandomStatus(generateRandomStatus());
+  //     const fetchOrder = () => {
+  //       bookApis.getOrders(json => {
+  //         setTimeout(() => {
+  //           setStatus(fetchStatusEnum.SUCCESS);
+  //           setItems(json.filter(it => it.cusId == profile.currentId));
+  //           setIsLoading(false);
+  //         }, 2000);
+  //       });
+  //     };
+  //     fetchOrder();
+  //   }, []),
+  // );
   useEffect(() => {
     // Generate a random status when the component mounts
     setRandomStatus(generateRandomStatus());
@@ -195,11 +150,28 @@ function Order(props) {
       setItems(json.filter(it => it.cusId == profile.currentId));
     });
   };
+
   useFocusEffect(
     useCallback(() => {
       fetchOrder();
     }, []),
   );
+  // const renderContent = () => {
+  //   if (status == fetchStatusEnum.LOADING || isLoading) {
+  //     return (
+  //       <>
+  //         <View
+  //           style={{
+  //             flex: 1,
+  //             justifyContent: 'center',
+  //             alignItems: 'center',
+  //           }}>
+  //           {/* <Loader /> */}
+  //           <Text>Loading</Text>
+  //         </View>
+  //       </>
+  //     );
+  //   }
   return (
     <View>
       <TouchableOpacity onPress={() => props.navigation.navigate('UITabs')}>
@@ -250,5 +222,6 @@ function Order(props) {
     </View>
   );
 }
-
+//   return <View style={{flex: 1}}>{renderContent()}</View>;
+// }
 export default Order;
