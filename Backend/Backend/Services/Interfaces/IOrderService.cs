@@ -9,7 +9,7 @@ namespace Backend.Services.Interfaces
         void Create(CreateOrderDto input);
         void Delete(int id);
         void DeleteAllFull();
-        List<CreateOrderDto> GetAll();
+        List<Order> GetAll();
         PageResultDto<List<Order>> GetAllWithPage(FilterDto input);
     }
 }

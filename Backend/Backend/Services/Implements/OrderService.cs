@@ -20,11 +20,12 @@ namespace Backend.Services.Implements
 
 
  
-            public List<CreateOrderDto> GetAll()
+            public List<Order> GetAll()
         {
             var listOrder = from order in _dbContext.Orders
-                            select new CreateOrderDto
+                            select new Order
                             {
+                                Id = order.Id,
                                 CusId = order.CusId,
                                 CustomerName = order.CustomerName,
                                 PhoneNumber = order.PhoneNumber,
