@@ -26,6 +26,7 @@ import {
   AddBook,
   Checkout,
   OrderItem,
+  Preview,
 } from '../Screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -52,6 +53,7 @@ function App(props) {
         <Stack.Screen name="Checkout" component={Checkout} />
         <Stack.Screen name="Order" component={Order} />
         <Stack.Screen name="OrderItem" component={OrderItem} />
+        <Stack.Screen name="Preview" component={Preview} />
       </Stack.Navigator>
     </NavigationContainer>
   );

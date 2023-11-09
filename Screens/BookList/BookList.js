@@ -11,12 +11,15 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {images, colors, icons, fontSize} from '../../constants';
 import {isValidEmail, isValidPassword} from '../../utilies/Validation';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import BookItems from './BookItems';
 import {useFocusEffect} from '@react-navigation/native';
 import bookApis from '../api';
+import {fetchStatusEnum} from '../constants';
 
 function BookList(props) {
   const {navigation} = props;
@@ -229,9 +232,15 @@ function BookList(props) {
   ];
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [searchText, setSearchText] = useState('');
+  const [products, setProducts] = useState([]);
+  const [status, setStatus] = useState(fetchStatusEnum.NONE);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchBook = () => {
-    bookApis.getBooks(json => setBooks(json));
+    bookApis.getBooks(json => {
+      setStatus(fetchStatusEnum.SUCCESS);
+      setBooks(json);
+    });
   };
 
   const addNewBook = newBook => {
@@ -247,24 +256,96 @@ function BookList(props) {
 
   useFocusEffect(
     useCallback(() => {
+      setStatus(fetchStatusEnum.LOADING);
+      bookApis.getBooks(json => {
+        setTimeout(() => {
+          setStatus(fetchStatusEnum.SUCCESS);
+          setProducts(json);
+          setIsLoading(false);
+        }, 100);
+      });
       fetchBook();
     }, []),
   );
   console.log('list>>', books);
 
   // Sắp xếp sách vào danh sách thể loại
-  books.forEach(book => {
-    if (!genres[book.type]) {
-      genres[book.type] = [];
-    }
-    genres[book.type].push(book);
-  });
-  const filteredBooks = books.filter(
-    it =>
-      it.bookName &&
-      it.bookName.toLowerCase().includes(searchText.toLowerCase()),
-  );
+
   // const filteredBooks = () => books.filter(eachBook => eachBook.name.toLowerCase().includes(searchText.toLowerCase()))
+
+  const renderContent = () => {
+    if (status == fetchStatusEnum.LOADING || isLoading) {
+      return (
+        <>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <FontAwesomeIcon
+              icon={faSpinner}
+              spinPulse
+              style={{
+                '--fa-primary-color': '#b961e5',
+                '--fa-secondary-color': '#cf45d9',
+              }}
+            />
+            <Text>Loading</Text>
+          </View>
+        </>
+      );
+    }
+
+    books.forEach(book => {
+      if (!genres[book.type]) {
+        genres[book.type] = [];
+      }
+      genres[book.type].push(book);
+    });
+
+    const filteredBooks = books.filter(
+      it =>
+        it.bookName &&
+        it.bookName.toLowerCase().includes(searchText.toLowerCase()),
+    );
+
+    return filteredBooks.length > 0 ? (
+      <FlatList
+        data={filteredBooks}
+        renderItem={({item}) => {
+          return (
+            <BookItems
+              onPress={() => {
+                // alert(`You press item's name: ${item.name}`)
+                navigation.navigate('BookDetail', {item});
+              }}
+              book={item}
+              key={item.name}
+            />
+          );
+        }}
+        keyExtractor={eachBook => eachBook.name}
+      />
+    ) : (
+      <View
+        style={{
+          flex: 1,
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text
+          style={{
+            color: 'black',
+            fontSize: fontSize.h3,
+          }}>
+          No book found
+        </Text>
+      </View>
+    );
+  };
+
   return (
     <View
       style={{
@@ -355,40 +436,7 @@ function BookList(props) {
             }} />
         </View> */}
 
-      {filteredBooks.length > 0 ? (
-        <FlatList
-          data={filteredBooks}
-          renderItem={({item}) => {
-            return (
-              <BookItems
-                onPress={() => {
-                  // alert(`You press item's name: ${item.name}`)
-                  navigation.navigate('BookDetail', {item});
-                }}
-                book={item}
-                key={item.name}
-              />
-            );
-          }}
-          keyExtractor={eachBook => eachBook.name}
-        />
-      ) : (
-        <View
-          style={{
-            flex: 1,
-            height: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              color: 'black',
-              fontSize: fontSize.h3,
-            }}>
-            No book found
-          </Text>
-        </View>
-      )}
+      {renderContent()}
     </View>
   );
 }

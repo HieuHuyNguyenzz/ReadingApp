@@ -1,4 +1,4 @@
-const domain = 'http://192.168.1.8:5091';
+const domain = 'http://192.168.1.9:5091' || 'http://172.20.10.4:5091';
 
 const getBooks = (callback = () => {}) => {
   fetch(`${domain}/api/Product/get-all`)
