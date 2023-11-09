@@ -17,12 +17,14 @@ namespace Backend.Services.Implements
             _configuration = configuration;
             _dbContext = dbContext;
         }
-        public List<Order> GetAll()
+
+
+ 
+            public List<CreateOrderDto> GetAll()
         {
             var listOrder = from order in _dbContext.Orders
-                            select new Order
+                            select new CreateOrderDto
                             {
-                                Id = order.Id,
                                 CusId = order.CusId,
                                 CustomerName = order.CustomerName,
                                 PhoneNumber = order.PhoneNumber,
@@ -56,22 +58,32 @@ namespace Backend.Services.Implements
         }
         public void Create(CreateOrderDto input)
         {
-
-            _dbContext.Orders.Add(new Order
+            var query = _dbContext.Orders.FirstOrDefault(o => o.CusId == input.CusId);
+            if (query != null)
             {
-                CusId = input.CusId,
-                CustomerName = input.CustomerName,
-                PhoneNumber = input.PhoneNumber,
-                OrdersAddress = input.OrdersAddress,
-                BookName = input.BookName,
-                Price = input.Price,
-                Discount = input.Discount,
-                DiscountPrice = input.DiscountPrice,
-                FinalPrice = input.FinalPrice,
-                BookImage = input.BookImage,
-                OrdersStatus = input.OrdersStatus,
-            });
-            _dbContext.SaveChanges();
+                throw new Exception("đã tồn tại cusId");
+            }
+            else
+            {
+                _dbContext.Orders.Add(new Order
+                {
+                    CusId = input.CusId,
+                    CustomerName = input.CustomerName,
+                    PhoneNumber = input.PhoneNumber,
+                    OrdersAddress = input.OrdersAddress,
+                    BookName = input.BookName,
+                    Price = input.Price,
+                    Discount = input.Discount,
+                    DiscountPrice = input.DiscountPrice,
+                    FinalPrice = input.FinalPrice,
+                    BookImage = input.BookImage,
+                    OrdersStatus = input.OrdersStatus,
+                });
+                _dbContext.SaveChanges();
+
+
+            }
+
         }
         public void Delete(int id)
         {
@@ -91,5 +103,8 @@ namespace Backend.Services.Implements
             }
             _dbContext.SaveChanges();
         }
+
+        
+        }
     }
-}
+

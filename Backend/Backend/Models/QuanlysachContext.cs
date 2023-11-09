@@ -54,6 +54,12 @@ public partial class QuanlysachContext : DbContext
             entity.Property(e => e.BookImage).HasColumnType("varchar(max)").IsRequired();
             entity.Property(e => e.BookDescription).HasColumnType("nvarchar(1000)").IsRequired();
             entity.Property(e => e.Genre).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.Author).HasColumnType("nvarchar(50)").IsRequired();
+            entity.Property(e => e.rate).HasColumnType("int").IsRequired();
+            entity.Property(e => e.preview).HasColumnType("nvarchar(1000)").IsRequired();
+
+
+
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -86,6 +92,7 @@ public partial class QuanlysachContext : DbContext
             entity.Property(e => e.Phone).HasColumnType("nvarchar(50)").IsRequired();
             entity.Property(e => e.UserType).HasColumnType("int").HasDefaultValue(UserTypes.Customer).IsRequired();
         });
+
 
         OnModelCreatingPartial(modelBuilder);
     }

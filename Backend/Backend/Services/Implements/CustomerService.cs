@@ -27,7 +27,10 @@ namespace Backend.Services.Implements
                                   BookImage = customer.BookImage,
                                   Price = customer.Price,
                                   BookDescription = customer.BookDescription,
-                                  Genre = customer.Genre
+                                  Genre = customer.Genre,
+                                  Author = customer.Author,
+                                  rate = customer.rate,
+                                  preview = customer.preview
                               };
             return listStudent.ToList();
 
@@ -63,8 +66,11 @@ namespace Backend.Services.Implements
                 Price = input.Price,
                 BookName = input.BookName,
                 BookDescription = input.BookDescription,
-                Genre = input.Genre
-            });
+                Genre = input.Genre,
+                Author = input.Author,
+                rate = input.rate,
+                preview = input.preview
+             });
             _dbContext.SaveChanges();
         }
         public void Update(UpdateCustomerDto input)
@@ -75,6 +81,9 @@ namespace Backend.Services.Implements
                 customer.Price = input.Price;
                 customer.BookName = input.BookName;
                 customer.BookDescription = input.BookDescription;
+                customer.Author = input.Author;
+                customer.rate = input.rate;
+                customer.preview = input.preview;
 
             }
             _dbContext.SaveChanges();
